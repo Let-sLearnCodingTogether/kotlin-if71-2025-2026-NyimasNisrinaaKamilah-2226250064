@@ -1,15 +1,32 @@
-package oop
+package OOP
 
-class PersegiPanjang (val panjang : Double, val lebar : Double){
-    //tambah val atau var di value jika tidak di inisialisasi
+class Player(val name: String)
+{
+    var health : Int = 100
+    var level : Int = 1
 
-    //custom accessor getter
-    val luas : Double
-        get() = panjang * lebar
-
+    fun takeDamage (damage : Int) {
+        health -= damage
+        if (health < 0){
+            health = 0
+        }
+    }
+    fun levelUp () {
+        level += 1
+        health = 100
+    }
+    fun showStatus () {
+        println("Nama: $name , Level: $level, Health: $health")
+    }
 }
 
+
 fun main() {
-    val hasil1 = PersegiPanjang(5.0, 7.0)
-    println(hasil1.luas)
+   val pemain = Player ("Nyimas Nisrinaa")
+
+    pemain.showStatus()
+    pemain.takeDamage(30)
+    pemain.showStatus()
+    pemain.levelUp()
+    pemain.showStatus()
 }

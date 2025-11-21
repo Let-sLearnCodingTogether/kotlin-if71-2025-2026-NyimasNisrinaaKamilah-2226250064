@@ -1,32 +1,28 @@
 package OOP
 
-class Player(val name: String)
-{
-    var health : Int = 100
-    var level : Int = 1
-
-    fun takeDamage (damage : Int) {
-        health -= damage
-        if (health < 0){
-            health = 0
-        }
-    }
-    fun levelUp () {
-        level += 1
-        health = 100
-    }
-    fun showStatus () {
-        println("Nama: $name , Level: $level, Health: $health")
-    }
-}
-
+data class GameItem(
+    val id : Int,
+    val name : String,
+    val value : Int,
+    val rarity : String)
 
 fun main() {
-   val pemain = Player ("Nyimas Nisrinaa")
+    val DaftarItem = mutableListOf<GameItem>()
 
-    pemain.showStatus()
-    pemain.takeDamage(30)
-    pemain.showStatus()
-    pemain.levelUp()
-    pemain.showStatus()
+    val item1 = GameItem(1,"Pedang Besi", 100, "Common")
+    val item2 = GameItem(2,"Ramuan Kesehatan", 50 , "Common")
+    val item3 = GameItem(3,"Jubah Bayangan", 500, "Epic")
+
+    DaftarItem.addAll(listOf(item1, item2, item3))
+
+    val cursedSword = item1.copy(name = "Pedang Besi Terkutuk", value = 250)
+    println(cursedSword.name)
+    println()
+
+    println("Objek Pedang Besi Asli : $item1")
+    println("Objek Pedang Besi Terkutuk : $cursedSword")
+    println()
+
+    println("Isi Inventaris: ")
+    DaftarItem.forEach { println(it) }
 }
